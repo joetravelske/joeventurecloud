@@ -1,1 +1,19 @@
-export default {echo   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],echo   theme: {echo     extend: {echo       colors: {echo         safari: {echo           orange: '#E67E22',echo           green: '#4A7C59',echo           gold: '#D4AF37',echo         },echo       },echo       fontFamily: {echo         heading: ['Syne', 'system-ui', 'sans-serif'],echo         body: ['Space Grotesk', 'system-ui', 'sans-serif'],echo       },echo     },echo   },echo   plugins: [],echo }
+export default {
+    content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+    theme: {
+        extend: {
+            colors: {
+                safari: {
+                    orange: '#E67E22',
+                    green: '#4A7C59',
+                    gold: '#D4AF37',
+                },
+            },
+            fontFamily: {
+                heading: ['Syne', 'system-ui', 'sans-serif'],
+                body: ['Space Grotesk', 'system-ui', 'sans-serif'],
+            },
+        },
+    },
+    plugins: [],
+}
