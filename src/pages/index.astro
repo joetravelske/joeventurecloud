@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import SafariPackages from '../components/SafariPackages';
+import Destinations from '../components/Destinations';
+import About from '../components/About';
+import Testimonials from '../components/Testimonials';
+import Contact from '../components/Contact';
+---
+
+<Layout 
+  title="African Safari Tours - Kenya, Tanzania & Uganda" 
+  description="Experience authentic African safaris with Joeventure Tours. Expert guides, Big Five encounters, 400+ happy travelers. Book your dream safari in Kenya, Tanzania & Uganda."
+>
+  <Hero client:load />
+  <SafariPackages client:load />
+  <Destinations client:load />
+  <About client:load />
+  <Testimonials client:load />
+  <Contact client:load />
+</Layout>
