@@ -4,14 +4,16 @@ export default {
         extend: {
             colors: {
                 safari: {
-                    orange: '#E67E22',
-                    green: '#4A7C59',
-                    gold: '#D4AF37',
+                    olive: '#3D4828',
+                    ochre: '#C98E34',
+                    bone: '#F9F7F2',
+                    charcoal: '#262626',
+                    orange: '#E67E22', // kept but will be used sparingly
                 },
             },
             fontFamily: {
-                heading: ['Syne', 'system-ui', 'sans-serif'],
-                body: ['Space Grotesk', 'system-ui', 'sans-serif'],
+                heading: ['"Playfair Display"', 'serif'],
+                body: ['Inter', 'sans-serif'],
             },
         },
     },

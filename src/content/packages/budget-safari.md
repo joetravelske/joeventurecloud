@@ -2,7 +2,6 @@
 name: "Budget Safari Adventure"
 description: "Experience the thrill of a safari without breaking the bank. All the essentials for an authentic experience."
 duration: "3 Days / 2 Nights"
-price: 450
 destination: "Maasai Mara, Kenya"
 image: "/images/convoy.webp"
 highlights:

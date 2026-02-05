@@ -2,7 +2,6 @@
 name: "Maasai Mara Magic"
 description: "Experience the legendary Maasai Mara, home to the Great Migration and the Big Five."
 duration: "5 Days / 4 Nights"
-price: 1200
 destination: "Maasai Mara, Kenya"
 image: "/images/lion-male.webp"
 highlights:

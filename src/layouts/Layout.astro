@@ -33,6 +33,11 @@ const { title, description = "Experience authentic African safaris with Joeventu
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="/images/logo.png" />
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <!-- Google Analytics - Add your GA4 ID -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
@@ -42,7 +47,8 @@ const { title, description = "Experience authentic African safaris with Joeventu
       gtag('config', 'G-XXXXXXXXXX');
     </script> -->
   </head>
-  <body class="antialiased">
+  <body class="antialiased font-body text-safari-charcoal bg-safari-bone">
+    <div class="grain-bg"></div>
     <!-- Header -->
     <Header client:load />
 

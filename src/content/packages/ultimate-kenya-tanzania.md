@@ -2,7 +2,6 @@
 name: "Ultimate Kenya & Tanzania"
 description: "The definitive East African safari covering the most iconic parks in two countries."
 duration: "10 Days / 9 Nights"
-price: 2800
 destination: "Kenya & Tanzania"
 image: "/images/wildlifes.webp"
 highlights:

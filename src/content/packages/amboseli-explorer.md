@@ -2,7 +2,6 @@
 name: "Amboseli Explorer"
 description: "Witness the majestic elephants of Amboseli with the iconic Mount Kilimanjaro as your backdrop."
 duration: "4 Days / 3 Nights"
-price: 950
 destination: "Amboseli National Park"
 image: "/images/elephants.webp"
 highlights:

@@ -19,7 +19,7 @@ const packages = defineCollection({
         name: z.string(),
         description: z.string(),
         duration: z.string(),
-        price: z.number(),
+        price: z.number().optional(),
         destination: z.string(),
         image: z.string(),
         highlights: z.array(z.string()),

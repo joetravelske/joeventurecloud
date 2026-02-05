@@ -30,20 +30,20 @@ const Header = () => {
                     </a>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-6">
+                    <nav className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-gray-700 hover:text-safari-orange font-medium transition-colors relative group"
+                                className="text-safari-charcoal hover:text-safari-ochre font-medium transition-colors relative group font-body"
                             >
                                 {link.name}
-                                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-safari-orange transition-all group-hover:w-full"></span>
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-safari-ochre transition-all group-hover:w-full"></span>
                             </a>
                         ))}
                         <a
                             href="/packages"
-                            className="btn-primary"
+                            className="bg-safari-olive text-white px-6 py-2.5 rounded-lg font-heading font-semibold hover:bg-safari-charcoal transition-all shadow-md"
                         >
                             Book Safari
                         </a>
