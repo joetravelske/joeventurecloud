@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SafariPackages from '../components/SafariPackages';
+---
+
+<Layout 
+  title="Safari Packages - Book Your Adventure" 
+  description="Explore our curated safari packages across Kenya, Tanzania & Uganda. From budget adventures to luxury expeditions, find your perfect African safari."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/convoy.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Safari <span class="text-safari-orange">Packages</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Choose your perfect African adventure from our carefully curated safari experiences
+      </p>
+    </div>
+  </section>
+
+  <!-- Safari Packages Component -->
+  <SafariPackages client:load />
+
+  <!-- Custom Safari CTA -->
+  <section class="section-padding bg-gradient-to-b from-white to-orange-50">
+    <div class="container-custom">
+      <div class="bg-gradient-to-r from-safari-green to-emerald-600 rounded-2xl p-8 md:p-12 text-white text-center shadow-2xl">
+        <span class="text-6xl mb-4 block">🎯</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Need a Custom Safari?</h2>
+        <p class="text-xl mb-6 text-white/90 max-w-2xl mx-auto">
+          Every traveler is unique. Let us design a personalized safari that matches your dreams, budget, and schedule perfectly.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/contact"
+            class="inline-flex items-center justify-center gap-2 bg-white text-safari-green px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg text-lg"
+          >
+            Request Custom Quote
+          </a>
+          <a 
+            href="https://wa.me/254705924974?text=Hi%20Joe!%20I'd%20like%20to%20discuss%20a%20custom%20safari%20package."
+            target="_blank"
+            class="inline-flex items-center justify-center gap-2 bg-safari-orange text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-600 transition-all shadow-lg text-lg"
+          >
+            <span>💬</span> Chat with Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Book With Us -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Why Book Your Safari With Us?
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          More than just a tour operator - we're your safari partners
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="text-center p-6">
+          <div class="text-5xl mb-4">💰</div>
+          <h3 class="font-bold text-lg mb-2">Best Price Guarantee</h3>
+          <p class="text-gray-600 text-sm">Competitive pricing with no hidden fees</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-5xl mb-4">🛡️</div>
+          <h3 class="font-bold text-lg mb-2">Fully Insured</h3>
+          <p class="text-gray-600 text-sm">Comprehensive travel insurance included</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-5xl mb-4">⭐</div>
+          <h3 class="font-bold text-lg mb-2">4.9/5 Rating</h3>
+          <p class="text-gray-600 text-sm">400+ verified reviews from happy travelers</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="text-5xl mb-4">🎁</div>
+          <h3 class="font-bold text-lg mb-2">Flexible Booking</h3>
+          <p class="text-gray-600 text-sm">Free cancellation up to 30 days before</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

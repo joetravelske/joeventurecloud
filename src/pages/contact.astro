@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Contact from '../components/Contact';
+---
+
+<Layout 
+  title="Contact Us - Get in Touch" 
+  description="Contact Joeventure Tours for safari bookings, custom quotes, or any questions. We're here to help plan your perfect African adventure."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/joe-guide.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Get in <span class="text-safari-orange">Touch</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Let's start planning your dream African safari adventure
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Component -->
+  <Contact client:load />
+
+  <!-- FAQ Section -->
+  <section class="section-padding bg-gradient-to-b from-white to-orange-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Quick answers to common questions about our safaris
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        <!-- FAQ 1 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            What's included in the safari package price?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            Our packages typically include park entrance fees, accommodation, meals (as specified), game drives, professional guide services, and airport transfers. Specific inclusions vary by package - check individual package details or contact us for clarification.
+          </p>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            Do I need a visa to visit Kenya/Tanzania/Uganda?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            Most nationalities require a visa. Kenya and Uganda offer e-visas that can be applied for online before travel. Tanzania also offers visa-on-arrival at major entry points. We recommend checking with your country's embassy or consulate for the most current requirements.
+          </p>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            What's the best time for a safari?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            The dry season (June-October) is generally best for wildlife viewing as animals congregate around water sources. However, each season has its advantages. The wet season (November-May) offers lush landscapes, fewer tourists, better prices, and excellent bird watching. The Great Migration in Maasai Mara occurs July-October.
+          </p>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            Is it safe to go on safari?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            Yes! Safaris are very safe when conducted by professional operators like us. Our experienced guides are trained in safety protocols, and we use well-maintained vehicles. Wildlife viewing is done from the safety of the vehicle, and walking safaris are only conducted in designated safe areas with armed rangers.
+          </p>
+        </details>
+
+        <!-- FAQ 5 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            Can you accommodate dietary restrictions?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            Absolutely! We work with lodges and camps that can accommodate vegetarian, vegan, gluten-free, halal, kosher, and other dietary requirements. Just let us know your needs when booking, and we'll make the necessary arrangements.
+          </p>
+        </details>
+
+        <!-- FAQ 6 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            What payment methods do you accept?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            We accept PayPal, M-Pesa (for Kenyan clients), bank transfers, and credit/debit cards. A deposit is typically required to confirm your booking, with the balance due before the safari start date. We'll provide detailed payment instructions upon booking.
+          </p>
+        </details>
+
+        <!-- FAQ 7 -->
+        <details class="bg-white rounded-xl p-6 shadow-lg group">
+          <summary class="font-bold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
+            What should I pack for a safari?
+            <span class="text-safari-orange group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-600">
+            Essential items include: neutral-colored clothing (khaki, beige, olive), comfortable walking shoes, hat, sunglasses, sunscreen, insect repellent, binoculars, camera with zoom lens, light jacket for early mornings, and any personal medications. We'll send you a detailed packing list upon booking.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alternative Contact Methods -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-heading font-extrabold text-gray-900 mb-4">
+          Prefer Other Ways to Connect?
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <a 
+          href="https://wa.me/254705924974?text=Hi%20Joe!%20I'd%20like%20to%20inquire%20about%20your%20safaris."
+          target="_blank"
+          class="bg-green-500 text-white rounded-xl p-6 text-center hover:bg-green-600 transition-all shadow-lg group"
+        >
+          <div class="text-5xl mb-3">💬</div>
+          <h3 class="font-bold text-xl mb-2">WhatsApp</h3>
+          <p class="text-sm text-white/90">Chat with us instantly</p>
+          <p class="mt-3 font-semibold">+254 705 924974</p>
+        </a>
+
+        <a 
+          href="tel:+254705924974"
+          class="bg-safari-orange text-white rounded-xl p-6 text-center hover:bg-orange-600 transition-all shadow-lg group"
+        >
+          <div class="text-5xl mb-3">📞</div>
+          <h3 class="font-bold text-xl mb-2">Call Us</h3>
+          <p class="text-sm text-white/90">Speak directly with our team</p>
+          <p class="mt-3 font-semibold">+254 705 924974</p>
+        </a>
+
+        <a 
+          href="mailto:info@joetours.co.ke"
+          class="bg-safari-green text-white rounded-xl p-6 text-center hover:bg-emerald-700 transition-all shadow-lg group"
+        >
+          <div class="text-5xl mb-3">✉️</div>
+          <h3 class="font-bold text-xl mb-2">Email</h3>
+          <p class="text-sm text-white/90">Send us a detailed inquiry</p>
+          <p class="mt-3 font-semibold text-sm">info@joetours.co.ke</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

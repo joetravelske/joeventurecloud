@@ -1,0 +1,274 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Award, Heart, Shield, Users, Target, Leaf } from 'lucide-react';
+---
+
+<Layout 
+  title="About Us - Your Safari Experts" 
+  description="Meet the Joeventure Tours team. 7+ years of safari expertise, 400+ happy travelers, and a passion for African wildlife conservation."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/joe-guide.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Meet the <span class="text-safari-orange">Joeventure</span> Team
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Your trusted partners in creating unforgettable African safari experiences since 2017
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+            Our Story
+          </h2>
+          <div class="w-24 h-1 bg-safari-orange mx-auto"></div>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            Founded in 2017 by Joe, a passionate wildlife enthusiast and experienced safari guide, Joeventure Tours was born from a simple dream: to share the magic of East Africa's wildlife with the world while supporting local communities and conservation efforts.
+          </p>
+          <p class="text-gray-700 text-lg leading-relaxed mb-6">
+            What started as small group tours in the Maasai Mara has grown into a full-service safari company operating across Kenya, Tanzania, and Uganda. We've had the privilege of guiding over 400 travelers from around the globe, creating memories that last a lifetime.
+          </p>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            Today, we're proud to be one of East Africa's most trusted safari operators, known for our personalized service, expert guides, and commitment to sustainable tourism.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section-padding bg-gradient-to-b from-orange-50 to-white">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Why Choose Joeventure Tours?
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          We're not just another safari company. Here's what makes us different.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-safari-orange/10 rounded-full flex items-center justify-center mb-6">
+            <Award class="w-8 h-8 text-safari-orange" />
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">7+ Years Experience</h3>
+          <p class="text-gray-600">
+            Our team has been guiding safaris since 2017, with deep knowledge of East African wildlife and ecosystems.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-safari-green/10 rounded-full flex items-center justify-center mb-6">
+            <Users class="w-8 h-8 text-safari-green" />
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">400+ Happy Travelers</h3>
+          <p class="text-gray-600">
+            We've created unforgettable memories for hundreds of travelers from over 40 countries worldwide.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-safari-gold/10 rounded-full flex items-center justify-center mb-6">
+            <Shield class="w-8 h-8 text-safari-gold" />
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">Licensed & Insured</h3>
+          <p class="text-gray-600">
+            Fully licensed by Kenya Tourism Board and insured for your peace of mind and safety.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-safari-orange/10 rounded-full flex items-center justify-center mb-6">
+            <Heart class="w-8 h-8 text-safari-orange" />
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">Personalized Service</h3>
+          <p class="text-gray-600">
+            Every safari is tailored to your interests, budget, and schedule. No cookie-cutter tours here!
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-safari-green/10 rounded-full flex items-center justify-center mb-6">
+            <Target class="w-8 h-8 text-safari-green" />
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">Expert Guides</h3>
+          <p class="text-gray-600">
+            Our guides are certified naturalists with years of field experience and a passion for wildlife.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="w-16 h-16 bg-safari-gold/10 rounded-full flex items-center justify-center mb-6">
+            <Leaf class="w-8 h-8 text-safari-gold" />
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">Conservation Focused</h3>
+          <p class="text-gray-600">
+            We partner with local conservation projects and ensure our safaris support wildlife protection.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Team -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Meet Our Team
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          The passionate people behind your safari adventure
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Joe - Founder -->
+        <div class="text-center">
+          <div class="relative mb-6 inline-block">
+            <img 
+              src="/images/joe-guide.webp" 
+              alt="Joe - Founder" 
+              class="w-48 h-48 rounded-full object-cover mx-auto shadow-xl"
+            />
+            <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-safari-orange rounded-full flex items-center justify-center text-3xl">
+              🦁
+            </div>
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">Joe</h3>
+          <p class="text-safari-orange font-semibold mb-3">Founder & Lead Guide</p>
+          <p class="text-gray-600 text-sm">
+            With 10+ years of safari experience, Joe is a certified wildlife guide and conservation advocate. His passion for East African wildlife is infectious!
+          </p>
+        </div>
+
+        <!-- Safari Guide 2 -->
+        <div class="text-center">
+          <div class="relative mb-6 inline-block">
+            <div class="w-48 h-48 rounded-full bg-gradient-to-br from-safari-orange to-safari-gold flex items-center justify-center mx-auto shadow-xl">
+              <span class="text-6xl">🦒</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">Our Expert Guides</h3>
+          <p class="text-safari-green font-semibold mb-3">Certified Naturalists</p>
+          <p class="text-gray-600 text-sm">
+            Our team of professional guides are all certified by the Kenya Professional Safari Guides Association with extensive field experience.
+          </p>
+        </div>
+
+        <!-- Support Team -->
+        <div class="text-center">
+          <div class="relative mb-6 inline-block">
+            <div class="w-48 h-48 rounded-full bg-gradient-to-br from-safari-green to-emerald-600 flex items-center justify-center mx-auto shadow-xl">
+              <span class="text-6xl">🌍</span>
+            </div>
+          </div>
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">Support Team</h3>
+          <p class="text-safari-gold font-semibold mb-3">Operations & Logistics</p>
+          <p class="text-gray-600 text-sm">
+            Our dedicated support team ensures every detail of your safari is perfectly planned and executed, from booking to departure.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conservation Commitment -->
+  <section class="section-padding bg-gradient-to-b from-emerald-50 to-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+            Our Conservation Commitment
+          </h2>
+          <div class="w-24 h-1 bg-safari-green mx-auto mb-6"></div>
+          <p class="text-xl text-gray-600">
+            We believe in responsible tourism that protects wildlife and supports local communities
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">🌿 Eco-Friendly Practices</h3>
+            <p class="text-gray-600">
+              We minimize our environmental impact through responsible waste management, supporting eco-lodges, and educating travelers about conservation.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">🤝 Community Support</h3>
+            <p class="text-gray-600">
+              We partner with local Maasai communities, employ local guides, and contribute to community development projects.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">🦏 Wildlife Protection</h3>
+            <p class="text-gray-600">
+              A portion of every safari booking goes directly to wildlife conservation organizations protecting endangered species.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="text-xl font-bold text-gray-900 mb-3">📚 Education</h3>
+            <p class="text-gray-600">
+              We educate travelers about wildlife conservation challenges and how they can make a positive impact.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-gradient-to-r from-safari-orange to-orange-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-4xl md:text-5xl font-heading font-extrabold mb-6">
+        Ready to Start Your Safari Adventure?
+      </h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+        Join the Joeventure family and experience the wild heart of Africa with guides who truly care.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="bg-white text-safari-orange px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg text-lg">
+          Explore Safari Packages
+        </a>
+        <a 
+          href="https://wa.me/254705924974?text=Hi%20Joe!%20I'd%20like%20to%20learn%20more%20about%20your%20safaris." 
+          target="_blank"
+          class="bg-green-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-600 transition-all shadow-lg text-lg flex items-center justify-center gap-2"
+        >
+          <span>💬</span> Chat with Us
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

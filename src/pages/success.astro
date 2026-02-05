@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Get booking reference from URL
+const url = new URL(Astro.request.url);
+const bookingRef = url.searchParams.get('ref') || 'JOEXXXX';
+---
+
+<Layout 
+  title="Booking Confirmed - Thank You!" 
+  description="Your safari booking has been confirmed. Get ready for an unforgettable African adventure!"
+>
+  <div class="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center section-padding">
+    <div class="container-custom max-w-3xl">
+      <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 text-center">
+        <!-- Success Icon -->
+        <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Booking Confirmed! 🎉
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8">
+          Thank you for choosing Joeventure Tours. Your safari adventure awaits!
+        </p>
+
+        <!-- Booking Reference -->
+        <div class="bg-gradient-to-r from-safari-orange to-orange-600 rounded-xl p-6 mb-8">
+          <p class="text-white/90 text-sm mb-2">Your Booking Reference</p>
+          <p class="text-white text-3xl font-bold font-mono">{bookingRef}</p>
+        </div>
+
+        <!-- What's Next -->
+        <div class="text-left mb-8">
+          <h2 class="text-2xl font-heading font-bold text-gray-900 mb-4 text-center">
+            What Happens Next?
+          </h2>
+          
+          <div class="space-y-4">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-safari-orange rounded-full flex items-center justify-center text-white font-bold">
+                1
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Confirmation Email</h3>
+                <p class="text-gray-600 text-sm">
+                  You'll receive a detailed confirmation email within 5 minutes with your booking details and itinerary.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-safari-orange rounded-full flex items-center justify-center text-white font-bold">
+                2
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Pre-Safari Briefing</h3>
+                <p class="text-gray-600 text-sm">
+                  Our team will contact you within 24 hours to discuss your safari, answer questions, and provide a packing list.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-safari-orange rounded-full flex items-center justify-center text-white font-bold">
+                3
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Travel Documents</h3>
+                <p class="text-gray-600 text-sm">
+                  We'll send you all necessary documents including vouchers, park permits, and accommodation confirmations.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-safari-orange rounded-full flex items-center justify-center text-white font-bold">
+                4
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Safari Day!</h3>
+                <p class="text-gray-600 text-sm">
+                  Get ready for the adventure of a lifetime! We'll pick you up and take care of everything.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/"
+            class="bg-safari-orange text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-600 transition-all shadow-lg"
+          >
+            Return to Homepage
+          </a>
+          <a 
+            href="https://wa.me/254705924974?text=Hi!%20I%20just%20booked%20a%20safari%20(Ref:%20{bookingRef}).%20I%20have%20some%20questions."
+            target="_blank"
+            class="bg-green-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-600 transition-all shadow-lg flex items-center justify-center gap-2"
+          >
+            <span>💬</span> Chat with Us
+          </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <p class="text-gray-600 mb-2">Need immediate assistance?</p>
+          <p class="text-gray-900 font-semibold">
+            📞 +254 705 924974 | ✉️ info@joetours.co.ke
+          </p>
+        </div>
+      </div>
+
+      <!-- Share Your Excitement -->
+      <div class="mt-8 text-center">
+        <p class="text-gray-600 mb-4">Share your excitement with friends!</p>
+        <div class="flex gap-3 justify-center">
+          <a 
+            href="https://www.facebook.com/sharer/sharer.php?u=https://joeventuretours.com"
+            target="_blank"
+            class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
+            aria-label="Share on Facebook"
+          >
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a 
+            href="https://twitter.com/intent/tweet?text=Just%20booked%20my%20African%20safari%20with%20@JoeventureTours!%20Can't%20wait!"
+            target="_blank"
+            class="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white hover:bg-sky-600 transition-colors"
+            aria-label="Share on Twitter"
+          >
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

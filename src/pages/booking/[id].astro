@@ -1,0 +1,260 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PayPalButton from '../../components/PayPalButton';
+import MpesaPayment from '../../components/MpesaPayment';
+
+// Generate static paths for all packages
+export function getStaticPaths() {
+  return [
+    { params: { id: 'maasai-mara-magic' } },
+    { params: { id: 'amboseli-explorer' } },
+    { params: { id: 'ultimate-kenya-tanzania' } },
+    { params: { id: 'budget-safari' } },
+  ];
+}
+
+// Get package ID from URL
+const { id } = Astro.params;
+
+// Package data (in a real app, this would come from a database or CMS)
+const packages: Record<string, any> = {
+  'maasai-mara-magic': {
+    name: 'Maasai Mara Magic',
+    duration: '5 Days / 4 Nights',
+    price: 1200,
+    destination: 'Maasai Mara, Kenya',
+    image: '/images/lion-male.webp',
+    highlights: [
+      'Big Five game drives',
+      'Great Migration (seasonal)',
+      'Maasai village visit',
+      'Luxury tented camp',
+      'Professional photography support',
+      'Sunrise & sunset drives'
+    ],
+    includes: 'Park fees, accommodation, meals, game drives, guide',
+  },
+  'amboseli-explorer': {
+    name: 'Amboseli Explorer',
+    duration: '4 Days / 3 Nights',
+    price: 950,
+    destination: 'Amboseli National Park',
+    image: '/images/elephants.webp',
+    highlights: [
+      'Elephant herds with Kilimanjaro backdrop',
+      'Bird watching paradise',
+      'Observation Hill panoramic views',
+      'Maasai cultural experience',
+      'Swamp wildlife viewing'
+    ],
+    includes: 'Park fees, accommodation, meals, game drives, guide',
+  },
+  'ultimate-kenya-tanzania': {
+    name: 'Ultimate Kenya & Tanzania',
+    duration: '10 Days / 9 Nights',
+    price: 2800,
+    destination: 'Kenya & Tanzania',
+    image: '/images/wildlifes.webp',
+    highlights: [
+      'Maasai Mara & Serengeti',
+      'Ngorongoro Crater',
+      'Amboseli National Park',
+      'Lake Manyara',
+      'Cultural experiences',
+      'Luxury lodges & camps'
+    ],
+    includes: 'All park fees, accommodation, meals, game drives, guide, transfers',
+  },
+};
+
+const packageData = packages[id as string] || packages['maasai-mara-magic'];
+---
+
+<Layout 
+  title={`Book ${packageData.name}`}
+  description={`Book your ${packageData.name} safari package. Secure online payment with PayPal or M-Pesa.`}
+>
+  <div class="min-h-screen bg-gradient-to-b from-orange-50 to-white section-padding">
+    <div class="container-custom max-w-6xl">
+      <!-- Back Button -->
+      <a 
+        href="/packages" 
+        class="inline-flex items-center gap-2 text-safari-orange hover:text-orange-600 font-semibold mb-8 transition-colors"
+      >
+        ← Back to Packages
+      </a>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Left Column: Package Details -->
+        <div>
+          <h1 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+            Book Your Safari
+          </h1>
+          <p class="text-xl text-gray-600 mb-8">
+            Complete your booking for {packageData.name}
+          </p>
+
+          <!-- Package Summary Card -->
+          <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+            <img 
+              src={packageData.image}
+              alt={packageData.name}
+              class="w-full h-64 object-cover"
+            />
+            <div class="p-6">
+              <h2 class="text-2xl font-heading font-bold text-gray-900 mb-2">
+                {packageData.name}
+              </h2>
+              <p class="text-safari-orange font-semibold mb-4">
+                📍 {packageData.destination}
+              </p>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-gray-600">⏱️ {packageData.duration}</span>
+              </div>
+
+              <div class="border-t border-gray-200 pt-4 mb-4">
+                <h3 class="font-bold text-gray-900 mb-2">Highlights:</h3>
+                <ul class="space-y-1">
+                  {packageData.highlights.map((highlight: string) => (
+                    <li class="text-sm text-gray-600">✓ {highlight}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="border-t border-gray-200 pt-4 mb-4">
+                <h3 class="font-bold text-gray-900 mb-2">Includes:</h3>
+                <p class="text-sm text-gray-600">{packageData.includes}</p>
+              </div>
+
+              <div class="bg-gradient-to-r from-safari-orange to-orange-600 rounded-xl p-4 text-white">
+                <div class="flex justify-between items-center">
+                  <span class="text-lg">Total Price:</span>
+                  <span class="text-3xl font-bold">${packageData.price}</span>
+                </div>
+                <p class="text-sm text-white/80 mt-1">per person</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="grid grid-cols-3 gap-4 text-center">
+            <div class="bg-white rounded-lg p-4 shadow">
+              <div class="text-2xl mb-1">🛡️</div>
+              <p class="text-xs font-semibold text-gray-700">Secure Payment</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 shadow">
+              <div class="text-2xl mb-1">✅</div>
+              <p class="text-xs font-semibold text-gray-700">Instant Confirmation</p>
+            </div>
+            <div class="bg-white rounded-lg p-4 shadow">
+              <div class="text-2xl mb-1">💯</div>
+              <p class="text-xs font-semibold text-gray-700">Best Price</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Payment Options -->
+        <div>
+          <div class="bg-white rounded-2xl shadow-xl p-8 sticky top-24">
+            <h2 class="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Choose Payment Method
+            </h2>
+
+            <!-- Payment Tabs -->
+            <div class="flex gap-2 mb-6">
+              <button 
+                id="paypal-tab"
+                class="payment-tab active flex-1 px-4 py-3 rounded-lg font-semibold transition-all"
+              >
+                💳 PayPal / Card
+              </button>
+              <button 
+                id="mpesa-tab"
+                class="payment-tab flex-1 px-4 py-3 rounded-lg font-semibold transition-all"
+              >
+                📱 M-Pesa
+              </button>
+            </div>
+
+            <!-- PayPal Payment -->
+            <div id="paypal-payment" class="payment-content">
+              <p class="text-gray-600 mb-4">
+                Pay securely with PayPal or credit/debit card
+              </p>
+              <PayPalButton 
+                client:load
+                amount={packageData.price.toString()}
+                packageName={packageData.name}
+              />
+              <p class="text-xs text-gray-500 mt-4 text-center">
+                Powered by PayPal. Your payment information is encrypted and secure.
+              </p>
+            </div>
+
+            <!-- M-Pesa Payment -->
+            <div id="mpesa-payment" class="payment-content hidden">
+              <MpesaPayment 
+                client:load
+                amount={(packageData.price * 130).toString()}
+                packageName={packageData.name}
+              />
+            </div>
+
+            <!-- Alternative: Bank Transfer -->
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <h3 class="font-bold text-gray-900 mb-3">💰 Prefer Bank Transfer?</h3>
+              <p class="text-sm text-gray-600 mb-3">
+                You can also pay via bank transfer. Contact us for account details.
+              </p>
+              <a 
+                href="https://wa.me/254705924974?text=Hi!%20I'd%20like%20to%20pay%20via%20bank%20transfer%20for%20the%20safari%20package."
+                target="_blank"
+                class="inline-flex items-center gap-2 text-safari-green hover:text-emerald-700 font-semibold transition-colors"
+              >
+                <span>💬</span> Chat with us on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .payment-tab {
+    background: #f3f4f6;
+    color: #374151;
+  }
+  
+  .payment-tab:hover {
+    background: #e5e7eb;
+  }
+  
+  .payment-tab.active {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+  }
+</style>
+
+<script>
+  // Payment tab switching
+  const paypalTab = document.getElementById('paypal-tab');
+  const mpesaTab = document.getElementById('mpesa-tab');
+  const paypalPayment = document.getElementById('paypal-payment');
+  const mpesaPayment = document.getElementById('mpesa-payment');
+
+  paypalTab?.addEventListener('click', () => {
+    paypalTab.classList.add('active');
+    mpesaTab?.classList.remove('active');
+    paypalPayment?.classList.remove('hidden');
+    mpesaPayment?.classList.add('hidden');
+  });
+
+  mpesaTab?.addEventListener('click', () => {
+    mpesaTab.classList.add('active');
+    paypalTab?.classList.remove('active');
+    mpesaPayment?.classList.remove('hidden');
+    paypalPayment?.classList.add('hidden');
+  });
+</script>

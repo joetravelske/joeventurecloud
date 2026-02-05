@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Payment Cancelled" 
+  description="Your payment was cancelled. You can try again or contact us for assistance."
+>
+  <div class="min-h-screen bg-gradient-to-b from-orange-50 to-white flex items-center justify-center section-padding">
+    <div class="container-custom max-w-2xl">
+      <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 text-center">
+        <!-- Cancel Icon -->
+        <div class="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-12 h-12 text-safari-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Payment Cancelled
+        </h1>
+        
+        <p class="text-xl text-gray-600 mb-8">
+          Your payment was cancelled. No charges have been made to your account.
+        </p>
+
+        <!-- Why This Happened -->
+        <div class="bg-orange-50 rounded-xl p-6 mb-8 text-left">
+          <h2 class="font-bold text-gray-900 mb-3">Why did this happen?</h2>
+          <ul class="space-y-2 text-gray-600 text-sm">
+            <li>• You clicked the "Cancel" button during payment</li>
+            <li>• You closed the payment window</li>
+            <li>• The payment session timed out</li>
+            <li>• There was an issue with your payment method</li>
+          </ul>
+        </div>
+
+        <!-- What You Can Do -->
+        <div class="text-left mb-8">
+          <h2 class="text-2xl font-heading font-bold text-gray-900 mb-4 text-center">
+            What Would You Like to Do?
+          </h2>
+          
+          <div class="space-y-3">
+            <a 
+              href="/packages"
+              class="flex items-center gap-3 p-4 bg-gradient-to-r from-safari-orange to-orange-600 text-white rounded-xl hover:shadow-lg transition-all group"
+            >
+              <span class="text-2xl">🔄</span>
+              <div class="flex-1 text-left">
+                <p class="font-bold">Try Payment Again</p>
+                <p class="text-sm text-white/80">Return to packages and complete your booking</p>
+              </div>
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a 
+              href="https://wa.me/254705924974?text=Hi!%20I%20tried%20to%20book%20a%20safari%20but%20had%20issues%20with%20payment.%20Can%20you%20help?"
+              target="_blank"
+              class="flex items-center gap-3 p-4 bg-green-500 text-white rounded-xl hover:shadow-lg transition-all group"
+            >
+              <span class="text-2xl">💬</span>
+              <div class="flex-1 text-left">
+                <p class="font-bold">Chat with Us on WhatsApp</p>
+                <p class="text-sm text-white/80">Get instant help from our team</p>
+              </div>
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a 
+              href="/contact"
+              class="flex items-center gap-3 p-4 bg-safari-green text-white rounded-xl hover:shadow-lg transition-all group"
+            >
+              <span class="text-2xl">✉️</span>
+              <div class="flex-1 text-left">
+                <p class="font-bold">Contact Us</p>
+                <p class="text-sm text-white/80">Send us a message or request a callback</p>
+              </div>
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+
+            <a 
+              href="/"
+              class="flex items-center gap-3 p-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all group"
+            >
+              <span class="text-2xl">🏠</span>
+              <div class="flex-1 text-left">
+                <p class="font-bold">Return to Homepage</p>
+                <p class="text-sm text-gray-600">Browse more safari options</p>
+              </div>
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Alternative Payment Methods -->
+        <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-6">
+          <h3 class="font-bold text-gray-900 mb-3">💡 Alternative Payment Options</h3>
+          <p class="text-sm text-gray-600 mb-3">
+            Having trouble with online payment? We also accept:
+          </p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-gray-700">Bank Transfer</span>
+            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-gray-700">M-Pesa</span>
+            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-gray-700">PayPal</span>
+            <span class="px-3 py-1 bg-white rounded-full text-xs font-semibold text-gray-700">Credit Card</span>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <p class="text-gray-600 mb-2">Need help? We're here for you!</p>
+          <p class="text-gray-900 font-semibold">
+            📞 +254 705 924974 | ✉️ info@joetours.co.ke
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

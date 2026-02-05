@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Destinations from '../components/Destinations';
+---
+
+<Layout 
+  title="Safari Destinations - Explore East Africa" 
+  description="Discover the best safari destinations in Kenya, Tanzania & Uganda. From Maasai Mara to Serengeti, explore Africa's greatest wildlife havens."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/wilderness.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Safari <span class="text-safari-orange">Destinations</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Explore Africa's most spectacular wildlife havens across Kenya, Tanzania & Uganda
+      </p>
+    </div>
+  </section>
+
+  <!-- Destinations Component -->
+  <Destinations client:load />
+
+  <!-- Planning Your Safari -->
+  <section class="section-padding bg-gradient-to-b from-white to-emerald-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-heading font-extrabold text-gray-900 mb-4">
+          Planning Your Safari
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          Everything you need to know before you go
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="text-4xl mb-4">📅</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Best Time to Visit</h3>
+          <p class="text-gray-600 mb-4">
+            <strong>Dry Season (June-October):</strong> Best for wildlife viewing as animals gather around water sources.
+          </p>
+          <p class="text-gray-600">
+            <strong>Wet Season (November-May):</strong> Lush landscapes, fewer tourists, and lower prices. Great for bird watching!
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="text-4xl mb-4">🎒</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">What to Pack</h3>
+          <ul class="text-gray-600 space-y-2 text-sm">
+            <li>✓ Neutral-colored clothing (khaki, beige, olive)</li>
+            <li>✓ Binoculars and camera with zoom lens</li>
+            <li>✓ Sunscreen, hat, and sunglasses</li>
+            <li>✓ Insect repellent</li>
+            <li>✓ Light jacket for early mornings</li>
+            <li>✓ Comfortable walking shoes</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow-lg">
+          <div class="text-4xl mb-4">💉</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Health & Safety</h3>
+          <p class="text-gray-600 mb-4">
+            <strong>Vaccinations:</strong> Yellow fever (required), Hepatitis A/B, Typhoid recommended.
+          </p>
+          <p class="text-gray-600">
+            <strong>Malaria:</strong> Prophylaxis recommended for most safari areas. Consult your doctor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-r from-safari-orange to-orange-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-4xl md:text-5xl font-heading font-extrabold mb-6">
+        Ready to Explore These Destinations?
+      </h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+        Let us create the perfect multi-destination safari tailored to your interests
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="bg-white text-safari-orange px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg text-lg">
+          View Safari Packages
+        </a>
+        <a 
+          href="/contact"
+          class="bg-safari-green text-white px-8 py-4 rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg text-lg"
+        >
+          Plan Custom Safari
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

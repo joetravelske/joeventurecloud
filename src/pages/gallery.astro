@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { readdir } from 'node:fs/promises';
+import { join } from 'node:path';
+
+// Get all WebP images from public/images
+const imagesDir = join(process.cwd(), 'public', 'images');
+const allFiles = await readdir(imagesDir);
+const imageFiles = allFiles.filter(file => file.endsWith('.webp') && file !== 'logo.webp');
+
+// Categorize images (simple categorization based on filename)
+const categories = {
+  wildlife: imageFiles.filter(f => 
+    f.includes('lion') || f.includes('elephant') || f.includes('leopard') || 
+    f.includes('cheetah') || f.includes('buffalo') || f.includes('rhino') ||
+    f.includes('giraffe') || f.includes('zebra') || f.includes('gazelle') ||
+    f.includes('wildebeest') || f.includes('hippo') || f.includes('vulture') ||
+    f.includes('eagle')
+  ),
+  landscapes: imageFiles.filter(f => 
+    f.includes('sunset') || f.includes('sunrise') || f.includes('wilderness') ||
+    f.includes('nature') || f.includes('mountain')
+  ),
+  safari: imageFiles.filter(f => 
+    f.includes('convoy') || f.includes('truck') || f.includes('guide') ||
+    f.includes('camp')
+  ),
+};
+
+// Add remaining images to 'all' category
+const categorizedFiles = new Set([...categories.wildlife, ...categories.landscapes, ...categories.safari]);
+const remaining = imageFiles.filter(f => !categorizedFiles.has(f));
+---
+
+<Layout 
+  title="Photo Gallery - Safari Memories" 
+  description="Browse stunning photos from our safaris across Kenya, Tanzania & Uganda. See the Big Five, breathtaking landscapes, and unforgettable moments."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/elephants.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Photo <span class="text-safari-orange">Gallery</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Witness the magic of African safaris through our lens
+      </p>
+    </div>
+  </section>
+
+  <!-- Gallery Filters -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button 
+          class="gallery-filter-btn active px-6 py-3 rounded-full font-semibold transition-all"
+          data-category="all"
+        >
+          All Photos ({imageFiles.length})
+        </button>
+        <button 
+          class="gallery-filter-btn px-6 py-3 rounded-full font-semibold transition-all"
+          data-category="wildlife"
+        >
+          🦁 Wildlife ({categories.wildlife.length})
+        </button>
+        <button 
+          class="gallery-filter-btn px-6 py-3 rounded-full font-semibold transition-all"
+          data-category="landscapes"
+        >
+          🌅 Landscapes ({categories.landscapes.length})
+        </button>
+        <button 
+          class="gallery-filter-btn px-6 py-3 rounded-full font-semibold transition-all"
+          data-category="safari"
+        >
+          🚙 Safari Life ({categories.safari.length})
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {imageFiles.map((image) => {
+          const category = 
+            categories.wildlife.includes(image) ? 'wildlife' :
+            categories.landscapes.includes(image) ? 'landscapes' :
+            categories.safari.includes(image) ? 'safari' : 'all';
+          
+          return (
+            <div 
+              class="gallery-item group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
+              data-category={category}
+            >
+              <img 
+                src={`/images/${image}`}
+                alt={image.replace('.webp', '').replace(/-/g, ' ')}
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <span class="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity">🔍</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-r from-safari-green to-emerald-600 text-white">
+    <div class="container-custom text-center">
+      <span class="text-6xl mb-4 block">📸</span>
+      <h2 class="text-4xl md:text-5xl font-heading font-extrabold mb-6">
+        Create Your Own Safari Memories
+      </h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+        These could be your photos! Book your safari adventure today and capture moments that last a lifetime.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="bg-white text-safari-green px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg text-lg">
+          View Safari Packages
+        </a>
+        <a 
+          href="/contact"
+          class="bg-safari-orange text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-600 transition-all shadow-lg text-lg"
+        >
+          Plan Your Safari
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .gallery-filter-btn {
+    background: #f3f4f6;
+    color: #374151;
+  }
+  
+  .gallery-filter-btn:hover {
+    background: #e5e7eb;
+  }
+  
+  .gallery-filter-btn.active {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+  }
+</style>
+
+<script>
+  // Gallery filter functionality
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Filter gallery items
+      galleryItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        if (category === 'all' || itemCategory === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
