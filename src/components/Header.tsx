@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
@@ -10,6 +10,9 @@ const Header = () => {
         { name: 'Packages', href: '/packages' },
         { name: 'Destinations', href: '/destinations' },
         { name: 'Gallery', href: '/gallery' },
+        { name: 'Blog', href: '/blog' },
+        { name: 'Stories', href: '/testimonials' },
+        { name: 'FAQ', href: '/faq' },
         { name: 'Contact', href: '/contact' },
     ];
 

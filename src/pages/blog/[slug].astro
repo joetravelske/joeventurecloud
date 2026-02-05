@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout 
+  title={post.data.title} 
+  description={post.data.description}
+>
+  <article class="pt-24 pb-16">
+    <!-- Post Hero -->
+    <div class="container-custom max-w-4xl mb-12">
+      <div class="mb-8">
+        <a href="/blog" class="text-safari-orange font-semibold hover:underline mb-4 inline-block">← Back to Blog</a>
+        <div class="flex items-center gap-4 mb-4">
+          {post.data.tags.map(tag => (
+            <span class="bg-safari-orange/10 text-safari-orange px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+              {tag}
+            </span>
+          ))}
+          <span class="text-gray-500 text-sm">
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-heading font-extrabold text-gray-900 leading-tight">
+          {post.data.title}
+        </h1>
+      </div>
+
+      {post.data.heroImage && (
+        <img 
+          src={post.data.heroImage} 
+          alt={post.data.title}
+          class="w-full aspect-[21/9] object-cover rounded-3xl shadow-2xl mb-12"
+        />
+      )}
+
+      <!-- Post Content -->
+      <div class="prose prose-lg md:prose-xl max-w-none prose-headings:font-heading prose-headings:font-bold prose-a:text-safari-orange prose-img:rounded-2xl">
+        <Content />
+      </div>
+
+      <!-- Post Footer -->
+      <div class="mt-16 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-safari-orange text-white rounded-full flex items-center justify-center text-xl font-bold">
+            J
+          </div>
+          <div>
+            <p class="font-bold text-gray-900">Written by {post.data.author}</p>
+            <p class="text-sm text-gray-500 font-medium">Safari Expert & Conservationist</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <span class="text-sm font-bold text-gray-400 uppercase tracking-widest">Share:</span>
+          <div class="flex gap-2">
+            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">f</button>
+            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">t</button>
+            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">in</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related CTA -->
+  <section class="section-padding bg-gradient-to-r from-safari-green to-emerald-600 text-white overflow-hidden relative">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+    <div class="container-custom text-center relative z-10">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">Inspired by this story?</h2>
+      <p class="text-xl mb-8 opacity-90">Experience the magic for yourself with our expert-led safaris.</p>
+      <a href="/packages" class="inline-block bg-white text-safari-green px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg text-lg">
+        Explore Safari Packages
+      </a>
+    </div>
+  </section>
+</Layout>

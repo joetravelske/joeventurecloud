@@ -1,4 +1,3 @@
-import React from 'react';
 import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
 
 const Footer = () => {
@@ -59,6 +58,9 @@ const Footer = () => {
                             <li><a href="/packages" className="text-gray-400 hover:text-safari-orange transition-colors">Safari Packages</a></li>
                             <li><a href="/destinations" className="text-gray-400 hover:text-safari-orange transition-colors">Destinations</a></li>
                             <li><a href="/gallery" className="text-gray-400 hover:text-safari-orange transition-colors">Photo Gallery</a></li>
+                            <li><a href="/blog" className="text-gray-400 hover:text-safari-orange transition-colors">Safari Blog</a></li>
+                            <li><a href="/testimonials" className="text-gray-400 hover:text-safari-orange transition-colors">Traveler Stories</a></li>
+                            <li><a href="/faq" className="text-gray-400 hover:text-safari-orange transition-colors">Safari FAQ</a></li>
                             <li><a href="/contact" className="text-gray-400 hover:text-safari-orange transition-colors">Contact Us</a></li>
                         </ul>
                     </div>

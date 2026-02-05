@@ -2,72 +2,21 @@
 import Layout from '../../layouts/Layout.astro';
 import PayPalButton from '../../components/PayPalButton';
 import MpesaPayment from '../../components/MpesaPayment';
+import { getCollection, getEntry } from 'astro:content';
 
-// Generate static paths for all packages
-export function getStaticPaths() {
-  return [
-    { params: { id: 'maasai-mara-magic' } },
-    { params: { id: 'amboseli-explorer' } },
-    { params: { id: 'ultimate-kenya-tanzania' } },
-    { params: { id: 'budget-safari' } },
-  ];
+// Generate static paths for all packages from the content collection
+export async function getStaticPaths() {
+  const allPackages = await getCollection('packages');
+  return allPackages.map(pkg => ({
+    params: { id: pkg.slug },
+    props: { entry: pkg },
+  }));
 }
 
-// Get package ID from URL
-const { id } = Astro.params;
-
-// Package data (in a real app, this would come from a database or CMS)
-const packages: Record<string, any> = {
-  'maasai-mara-magic': {
-    name: 'Maasai Mara Magic',
-    duration: '5 Days / 4 Nights',
-    price: 1200,
-    destination: 'Maasai Mara, Kenya',
-    image: '/images/lion-male.webp',
-    highlights: [
-      'Big Five game drives',
-      'Great Migration (seasonal)',
-      'Maasai village visit',
-      'Luxury tented camp',
-      'Professional photography support',
-      'Sunrise & sunset drives'
-    ],
-    includes: 'Park fees, accommodation, meals, game drives, guide',
-  },
-  'amboseli-explorer': {
-    name: 'Amboseli Explorer',
-    duration: '4 Days / 3 Nights',
-    price: 950,
-    destination: 'Amboseli National Park',
-    image: '/images/elephants.webp',
-    highlights: [
-      'Elephant herds with Kilimanjaro backdrop',
-      'Bird watching paradise',
-      'Observation Hill panoramic views',
-      'Maasai cultural experience',
-      'Swamp wildlife viewing'
-    ],
-    includes: 'Park fees, accommodation, meals, game drives, guide',
-  },
-  'ultimate-kenya-tanzania': {
-    name: 'Ultimate Kenya & Tanzania',
-    duration: '10 Days / 9 Nights',
-    price: 2800,
-    destination: 'Kenya & Tanzania',
-    image: '/images/wildlifes.webp',
-    highlights: [
-      'Maasai Mara & Serengeti',
-      'Ngorongoro Crater',
-      'Amboseli National Park',
-      'Lake Manyara',
-      'Cultural experiences',
-      'Luxury lodges & camps'
-    ],
-    includes: 'All park fees, accommodation, meals, game drives, guide, transfers',
-  },
-};
-
-const packageData = packages[id as string] || packages['maasai-mara-magic'];
+// Get package entry from props
+const { entry } = Astro.props;
+const packageData = entry.data;
+const { Content } = await entry.render();
 ---
 
 <Layout 
@@ -112,6 +61,10 @@ const packageData = packages[id as string] || packages['maasai-mara-magic'];
                 <span class="text-gray-600">⏱️ {packageData.duration}</span>
               </div>
 
+              <div class="border-t border-gray-200 pt-4 mb-4 prose prose-sm max-w-none">
+                <Content />
+              </div>
+
               <div class="border-t border-gray-200 pt-4 mb-4">
                 <h3 class="font-bold text-gray-900 mb-2">Highlights:</h3>
                 <ul class="space-y-1">
@@ -120,6 +73,25 @@ const packageData = packages[id as string] || packages['maasai-mara-magic'];
                   ))}
                 </ul>
               </div>
+
+              {packageData.itinerary && (
+                <div class="border-t border-gray-200 pt-4 mb-4">
+                  <h3 class="font-bold text-gray-900 mb-4">Detailed Itinerary:</h3>
+                  <div class="space-y-4">
+                    {packageData.itinerary.map((item: any) => (
+                      <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-safari-orange text-white rounded-full flex items-center justify-center font-bold text-sm">
+                          {item.day}
+                        </div>
+                        <div>
+                          <h4 class="font-bold text-gray-900 text-sm">{item.title}</h4>
+                          <p class="text-xs text-gray-600 mt-1">{item.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div class="border-t border-gray-200 pt-4 mb-4">
                 <h3 class="font-bold text-gray-900 mb-2">Includes:</h3>

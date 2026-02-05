@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    category: "Planning & Booking",
+    items: [
+      {
+        q: "How far in advance should I book my safari?",
+        a: "We recommend booking 6-12 months in advance, especially for travel during the peak season (June-October) and for the Great Migration. However, we can often accommodate last-minute bookings subject to availability."
+      },
+      {
+        q: "What is included in the package price?",
+        a: "Typically, our packages include all park fees, professional guide services, game drives in 4x4 vehicles, accommodation, meals mentioned in the itinerary, and airport transfers. International flights, visas, and tips are usually excluded."
+      },
+      {
+        q: "Do I need travel insurance?",
+        a: "Yes, comprehensive travel insurance is mandatory. It should cover medical emergencies, evacuation, trip cancellation, and loss of personal belongings."
+      }
+    ]
+  },
+  {
+    category: "On Safari",
+    items: [
+      {
+        q: "What kind of vehicles do you use?",
+        a: "We use specially modified 4x4 Toyota Land Cruisers with pop-up roofs for optimal wildlife viewing. They are equipped with radio communication, charging ports, and coolers for drinks."
+      },
+      {
+        q: "How long are the game drives?",
+        a: "Standard game drives are either early morning (6:30 AM - 9:30 AM) and late afternoon (4:00 PM - 6:30 PM), or full-day drives with a picnic lunch. We are flexible and can adjust based on wildlife movements and your preferences."
+      }
+    ]
+  },
+  {
+    category: "Health & Safety",
+    items: [
+      {
+        q: "Is it safe to go on a safari?",
+        a: "Yes, safaris are generally very safe. Our guides are highly trained professionals who understand animal behavior and prioritize your safety at all times. We also stay in reputable, secure lodges and camps."
+      },
+      {
+        q: "What vaccinations do I need?",
+        a: "Commonly recommended vaccinations include Yellow Fever (mandatory for some border crossings), Hepatitis A & B, and Typhoid. Malaria prophylaxis is also highly recommended. Please consult your travel clinic at least 8 weeks before departure."
+      }
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Safari FAQ - All Your Questions Answered" 
+  description="Got questions about booking an African safari? We have answers. Learn about the best time to visit, what to pack, health requirements, and more."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/truck-elephant-approaching.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Safari <span class="text-safari-orange">FAQ</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Everything you need to know before you embark on your adventure
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="section-padding bg-white">
+    <div class="container-custom max-w-4xl">
+      <div class="space-y-16">
+        {faqs.map((category) => (
+          <div>
+            <h2 class="text-3xl font-heading font-bold text-gray-900 mb-8 pb-4 border-b-4 border-safari-orange inline-block">
+              {category.category}
+            </h2>
+            <div class="space-y-6">
+              {category.items.map((item) => (
+                <div class="bg-gray-50 rounded-2xl p-6 md:p-8 hover:bg-orange-50/50 transition-colors border border-transparent hover:border-orange-100">
+                  <h3 class="text-xl font-bold text-gray-900 mb-4 flex gap-4">
+                    <span class="text-safari-orange text-2xl">Q:</span>
+                    {item.q}
+                  </h3>
+                  <div class="flex gap-4">
+                    <span class="text-safari-green text-2xl font-bold">A:</span>
+                    <p class="text-gray-600 leading-relaxed pt-1">
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Still have questions? -->
+  <section class="section-padding bg-gradient-to-b from-white to-orange-50 overflow-hidden relative">
+    <div class="container-custom text-center">
+      <div class="bg-white rounded-3xl p-12 shadow-2xl relative z-10 border border-orange-100 max-w-3xl mx-auto">
+        <span class="text-6xl mb-6 block">🤔</span>
+        <h2 class="text-4xl font-heading font-bold text-gray-900 mb-4">Still Have Questions?</h2>
+        <p class="text-xl text-gray-600 mb-8">
+          We're here to help! Reach out to us directly and we'll get back to you within 24 hours.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-safari-orange text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-600 transition-all shadow-lg text-lg">
+            Contact Support
+          </a>
+          <a 
+            href="https://wa.me/254705924974" 
+            class="bg-green-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-600 transition-all shadow-lg text-lg flex items-center justify-center gap-2"
+          >
+            <span>💬</span> WhatsApp Joe
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

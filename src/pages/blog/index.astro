@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout 
+  title="Safari Blog - Tips, Stories & News" 
+  description="Stay updated with the latest safari tips, wildlife stories, and Joeventure Tours news. Learn how to make the most of your African adventure."
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[40vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/savanna-landscape.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Safari <span class="text-safari-orange">Blog</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Insights, tips, and stories from the heart of the African wilderness
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog List -->
+  <section class="section-padding bg-white">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <article class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-100 flex flex-col">
+            <a href={`/blog/${post.slug}`} class="block aspect-video overflow-hidden">
+              <img 
+                src={post.data.heroImage || '/images/wilderness.webp'} 
+                alt={post.data.title}
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </a>
+            <div class="p-6 flex-grow flex flex-col">
+              <div class="flex items-center gap-4 mb-4">
+                <span class="text-xs font-bold text-safari-orange uppercase tracking-wider">
+                  {post.data.tags[0]}
+                </span>
+                <span class="text-xs text-gray-500">
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </span>
+              </div>
+              <h2 class="text-2xl font-heading font-bold text-gray-900 mb-3 hover:text-safari-orange transition-colors">
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              </h2>
+              <p class="text-gray-600 mb-6 line-clamp-3">
+                {post.data.description}
+              </p>
+              <div class="mt-auto flex items-center justify-between">
+                <span class="text-sm font-semibold text-gray-900 flex items-center gap-2">
+                  <span class="w-8 h-8 bg-safari-green/20 rounded-full flex items-center justify-center text-xs">J</span>
+                  {post.data.author}
+                </span>
+                <a href={`/blog/${post.slug}`} class="text-safari-orange font-bold text-sm hover:underline">
+                  Read More →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="section-padding bg-orange-50">
+    <div class="container-custom text-center">
+      <div class="max-w-2xl mx-auto">
+        <span class="text-5xl mb-4 block">📧</span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-4">Subscribe to Our Newsletter</h2>
+        <p class="text-gray-600 mb-8">
+          Get the latest safari deals, wildlife news, and travel tips delivered straight to your inbox.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input 
+            type="email" 
+            placeholder="Your email address" 
+            class="flex-grow px-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-safari-orange"
+            required
+          />
+          <button type="submit" class="bg-safari-orange text-white px-8 py-4 rounded-xl font-bold hover:bg-orange-600 transition-all shadow-lg">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

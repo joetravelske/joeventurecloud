@@ -90,7 +90,7 @@ const remaining = imageFiles.filter(f => !categorizedFiles.has(f));
       </div>
 
       <!-- Gallery Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
         {imageFiles.map((image) => {
           const category = 
             categories.wildlife.includes(image) ? 'wildlife' :
@@ -98,7 +98,11 @@ const remaining = imageFiles.filter(f => !categorizedFiles.has(f));
             categories.safari.includes(image) ? 'safari' : 'all';
           
           return (
-            <div 
+            <a 
+              href={`/images/${image}`}
+              data-pswp-width="1200"
+              data-pswp-height="800"
+              target="_blank"
               class="gallery-item group relative overflow-hidden rounded-lg aspect-square cursor-pointer"
               data-category={category}
             >
@@ -111,7 +115,7 @@ const remaining = imageFiles.filter(f => !categorizedFiles.has(f));
               <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
                 <span class="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity">🔍</span>
               </div>
-            </div>
+            </a>
           );
         })}
       </div>
@@ -160,9 +164,12 @@ const remaining = imageFiles.filter(f => !categorizedFiles.has(f));
 </style>
 
 <script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
   // Gallery filter functionality
   const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryItems = document.querySelectorAll('.gallery-item') as NodeListOf<HTMLElement>;
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -183,4 +190,12 @@ const remaining = imageFiles.filter(f => !categorizedFiles.has(f));
       });
     });
   });
+
+  // Initialize PhotoSwipe
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#gallery-grid',
+    children: 'a',
+    pswpModule: () => import('photoswipe'),
+  });
+  lightbox.init();
 </script>

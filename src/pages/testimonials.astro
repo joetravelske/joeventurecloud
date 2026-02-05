@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Testimonials from '../components/Testimonials';
+
+const reviews = [
+  {
+    name: "Sarah Johnson",
+    country: "United Kingdom",
+    rating: 5,
+    date: "January 2024",
+    text: "Our safari with Joe was absolutely life-changing. We saw the Maasai Mara in a way we never thought possible. Joe is a true expert and a wonderful person. We'll be back!",
+    image: "/images/clients-joe.webp"
+  },
+  {
+    name: "Michael Chen",
+    country: "Canada",
+    rating: 5,
+    date: "December 2023",
+    text: "The organization was flawless. From the moment we landed in Nairobi to our flight home, Joeventure handled everything. The wildlife sightings were incredible!",
+    image: "/images/clients-2.webp"
+  },
+  {
+    name: "Elena Rodriguez",
+    country: "Spain",
+    rating: 5,
+    date: "October 2023",
+    text: "I was a solo female traveler and felt completely safe and taken care of. Joe's knowledge of birds and animals is mind-blowing. Highly recommended!",
+    image: "/images/wilderness.webp"
+  },
+  {
+    name: "David Smith",
+    country: "USA",
+    rating: 5,
+    date: "September 2023",
+    text: "The 10-day Kenya & Tanzania tour was worth every penny. Ngorongoro Crater was a highlight. Our guides were professional and very patient with my photography!",
+    image: "/images/convoy-2.webp"
+  }
+];
+---
+
+<Layout 
+  title="Traveler Stories - Customer Reviews" 
+  description="Read honest reviews and stories from travelers who have experienced the magic of Africa with Joeventure Tours. 400+ happy travelers and counting!"
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <div 
+      class="absolute inset-0 z-0"
+      style={{
+        backgroundImage: 'url("/images/maasai-worriors.webp")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"></div>
+    </div>
+
+    <div class="container-custom relative z-10 text-white text-center">
+      <h1 class="text-5xl md:text-7xl font-heading font-extrabold mb-6 animate-fade-in-up">
+        Traveler <span class="text-safari-orange">Stories</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s">
+        Real experiences from our global family of adventurers
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-12 bg-white border-b border-gray-100">
+    <div class="container-custom">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-heading font-extrabold text-safari-orange mb-2">400+</div>
+          <div class="text-gray-600 font-semibold uppercase tracking-wider text-xs">Happy Travelers</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-heading font-extrabold text-safari-green mb-2">40+</div>
+          <div class="text-gray-600 font-semibold uppercase tracking-wider text-xs">Countries Served</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-heading font-extrabold text-safari-gold mb-2">4.9/5</div>
+          <div class="text-gray-600 font-semibold uppercase tracking-wider text-xs">Average Rating</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-heading font-extrabold text-orange-600 mb-2">100%</div>
+          <div class="text-gray-600 font-semibold uppercase tracking-wider text-xs">Authentic Content</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Reviews -->
+  <section class="section-padding bg-gray-50">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 gap-8">
+        {reviews.map((review) => (
+          <div class="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow border border-orange-100/50">
+            <div class="flex items-start gap-4 mb-6">
+              <img 
+                src={review.image} 
+                alt={review.name} 
+                class="w-16 h-16 rounded-full object-cover border-2 border-safari-orange"
+              />
+              <div>
+                <h3 class="font-heading font-bold text-xl text-gray-900">{review.name}</h3>
+                <p class="text-gray-500 text-sm">{review.country} • {review.date}</p>
+                <div class="flex text-safari-gold mt-1">
+                  {[...Array(review.rating)].map(() => (
+                    <span>★</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <blockquote class="text-gray-700 italic text-lg leading-relaxed relative">
+              <span class="text-6xl text-safari-orange/10 absolute -top-4 -left-2 font-serif">"</span>
+              {review.text}
+            </blockquote>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Testimonials Slider -->
+  <Testimonials client:load />
+
+  <!-- CTA -->
+  <section class="section-padding bg-gradient-to-r from-safari-orange to-orange-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-4xl md:text-5xl font-heading font-extrabold mb-6">
+        Ready to Write Your Own Story?
+      </h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto text-white/90">
+        Join our next expedition and create memories that will last a lifetime.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="bg-white text-safari-orange px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg text-lg">
+          Choose Your Package
+        </a>
+        <a 
+          href="/contact"
+          class="bg-safari-green text-white px-8 py-4 rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg text-lg"
+        >
+          Book Your Adventure
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
