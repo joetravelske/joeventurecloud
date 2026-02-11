@@ -12,9 +12,9 @@ const Footer = () => {
                     <div className="md:col-span-1">
                         <a href="/" className="inline-block mb-4">
                             <img
-                                src="/images/logo.png"
+                                src="/images/logo-white-new.png"
                                 alt="Joeventure Tours"
-                                className="h-16 w-auto brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+                                className="h-20 w-auto opacity-90 hover:opacity-100 transition-opacity"
                             />
                         </a>
                         <p className="text-gray-400 text-sm mb-4">
