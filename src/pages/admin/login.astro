@@ -1,0 +1,112 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import { LayoutDashboard } from 'lucide-react';
+---
+
+<AdminLayout title="Login">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
+      <!-- Header -->
+      <div class="bg-safari-orange p-8 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-4 backdrop-blur-sm">
+          <LayoutDashboard className="w-8 h-8 text-white" />
+        </div>
+        <h1 class="text-2xl font-bold text-white">Joeventure Admin</h1>
+        <p class="text-white/80 text-sm mt-2">Sign in to manage bookings</p>
+      </div>
+
+      <!-- Login Form -->
+      <div class="p-8">
+        <form id="login-form" class="space-y-6">
+          <div id="error-message" class="hidden bg-red-50 text-red-600 p-3 rounded-lg text-sm mb-4"></div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input 
+              type="email" 
+              name="email" 
+              required
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-safari-orange focus:border-transparent outline-none transition-all"
+              placeholder="admin@joetours.co.ke"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input 
+              type="password" 
+              name="password" 
+              required
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-safari-orange focus:border-transparent outline-none transition-all"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-black transition-all shadow-lg flex items-center justify-center gap-2"
+          >
+            <span id="btn-text">Sign In</span>
+            <div id="btn-spinner" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+          </button>
+        </form>
+
+        <div class="mt-6 text-center">
+          <a href="/" class="text-sm text-gray-400 hover:text-gray-600">← Back to Website</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  import { supabase } from '../../lib/supabase';
+
+  const loginForm = document.getElementById('login-form') as HTMLFormElement;
+  const errorMessage = document.getElementById('error-message');
+  const btnText = document.getElementById('btn-text');
+  const btnSpinner = document.getElementById('btn-spinner');
+  const submitBtn = loginForm?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  loginForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!errorMessage || !btnText || !btnSpinner || !submitBtn) return;
+
+    // Reset state
+    errorMessage.classList.add('hidden');
+    errorMessage.textContent = '';
+    btnText.classList.add('hidden');
+    btnSpinner.classList.remove('hidden');
+    submitBtn.disabled = true;
+
+    const formData = new FormData(loginForm);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      // Successful login
+      window.location.href = '/admin'; // Redirect to dashboard
+      
+    } catch (error: any) {
+      errorMessage.textContent = error.message || 'Authentication failed';
+      errorMessage.classList.remove('hidden');
+      btnText.classList.remove('hidden');
+      btnSpinner.classList.add('hidden');
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Check if already logged in
+  supabase.auth.getSession().then(({ data: { session } }) => {
+    if (session) {
+      window.location.href = '/admin';
+    }
+  });
+</script>

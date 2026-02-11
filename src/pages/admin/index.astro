@@ -1,0 +1,95 @@
+---
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import AdminBookingsTable from '../../components/AdminBookingsTable';
+import { LayoutDashboard, Users, Calendar, LogOut } from 'lucide-react';
+---
+
+<AdminLayout title="Dashboard">
+  <div id="loading" class="flex flex-col items-center justify-center min-h-screen bg-white">
+    <div class="w-12 h-12 border-4 border-safari-orange border-t-transparent rounded-full animate-spin mb-4"></div>
+    <p class="text-gray-500 font-medium">Verifying access...</p>
+  </div>
+
+  <div id="dashboard-content" class="hidden min-h-screen flex flex-col md:flex-row">
+    <!-- Sidebar -->
+    <aside class="w-full md:w-64 bg-gray-900 text-white flex-shrink-0">
+      <div class="p-6 border-b border-gray-800">
+        <h1 class="text-xl font-bold flex items-center gap-2">
+          <span class="w-8 h-8 bg-safari-orange rounded-lg flex items-center justify-center">J</span>
+          Joeventure
+        </h1>
+      </div>
+      
+      <nav class="p-4 space-y-2">
+        <a href="/admin" class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-lg font-medium">
+          <LayoutDashboard className="w-5 h-5" />
+          Bookings
+        </a>
+        <button id="logout-btn" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg font-medium transition-colors text-left">
+          <LogOut className="w-5 h-5" />
+          Sign Out
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-gray-50 p-4 md:p-8">
+      <header class="flex justify-between items-center mb-8">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900">Bookings Overview</h2>
+          <p class="text-gray-500 text-sm">Manage your safari inquiries and bookings</p>
+        </div>
+        <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
+          <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+          <span class="text-sm font-medium text-gray-700" id="admin-email">Loading...</span>
+        </div>
+      </header>
+
+      <!-- Stats Cards (Placeholder data for now, could fetch real counts) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-gray-500 text-sm font-medium">Total Inquiries</h3>
+            <Users className="w-5 h-5 text-blue-500" />
+          </div>
+          <p class="text-3xl font-bold text-gray-900">View Below</p>
+        </div>
+      </div>
+
+      <AdminBookingsTable client:load />
+    </main>
+  </div>
+</AdminLayout>
+
+<script>
+  import { supabase } from '../../lib/supabase';
+
+  const dashboardContent = document.getElementById('dashboard-content');
+  const loading = document.getElementById('loading');
+  const logoutBtn = document.getElementById('logout-btn');
+  const adminEmailSpan = document.getElementById('admin-email');
+
+  // Check authentication
+  const checkAuth = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    if (!session) {
+      // Not logged in, redirect to login
+      window.location.href = '/admin/login';
+    } else {
+      // Logged in, show content
+      loading?.classList.add('hidden');
+      dashboardContent?.classList.remove('hidden');
+      if (adminEmailSpan && session.user.email) {
+        adminEmailSpan.textContent = session.user.email;
+      }
+    }
+  };
+
+  checkAuth();
+
+  logoutBtn?.addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    window.location.href = '/admin/login';
+  });
+</script>
