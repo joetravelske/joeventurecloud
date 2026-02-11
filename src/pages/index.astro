@@ -5,7 +5,7 @@ import SafariPackages from '../components/SafariPackages';
 import Destinations from '../components/Destinations';
 import About from '../components/About';
 import Testimonials from '../components/Testimonials';
-import Contact from '../components/Contact';
+import BookingForm from '../components/BookingForm';
 ---
 
 <Layout 
@@ -17,5 +17,11 @@ import Contact from '../components/Contact';
   <Destinations client:load />
   <About client:load />
   <Testimonials client:load />
-  <Contact client:load />
+  <div class="container-custom relative z-20 my-20">
+    <BookingForm 
+      client:load 
+      packageName="Start Your Safari" 
+      packageId="custom" 
+    />
+  </div>
 </Layout>

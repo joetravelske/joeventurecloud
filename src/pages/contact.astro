@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Contact from '../components/Contact';
+import BookingForm from '../components/BookingForm';
 ---
 
 <Layout 
@@ -31,7 +31,13 @@ import Contact from '../components/Contact';
   </section>
 
   <!-- Contact Component -->
-  <Contact client:load />
+  <div class="container-custom relative z-20 -mt-20 mb-20">
+    <BookingForm 
+      client:load 
+      packageName="Custom Safari" 
+      packageId="custom" 
+    />
+  </div>
 
   <!-- FAQ Section -->
   <section class="section-padding bg-gradient-to-b from-white to-orange-50">

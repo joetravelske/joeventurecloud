@@ -20,6 +20,7 @@ type FormData = {
     accommodation_preference: string;
     travel_date: string;
     message: string;
+    package_id?: string;
 };
 
 export default function BookingForm({ packageName, packageId }: BookingFormProps) {
@@ -48,7 +49,7 @@ export default function BookingForm({ packageName, packageId }: BookingFormProps
                 .insert([
                     {
                         ...data,
-                        package_id: packageId || packageName, // Fallback if no ID
+                        package_id: data.package_id || packageId || packageName, // Prioritize selection, then prop
                         status: 'pending',
                     },
                 ]);
@@ -190,6 +191,33 @@ export default function BookingForm({ packageName, packageId }: BookingFormProps
                     </h3>
 
                     <div className="grid md:grid-cols-2 gap-4">
+                        {packageId === 'custom' ? (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Interested Package</label>
+                                <select
+                                    {...register('package_id')}
+                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-safari-orange focus:border-transparent outline-none transition-all bg-white"
+                                >
+                                    <option value="Custom Safari">General Inquiry / Custom Safari</option>
+                                    <option value="Amboseli Explorer">Amboseli Explorer</option>
+                                    <option value="Maasai Mara Magic">Maasai Mara Magic</option>
+                                    <option value="Samburu Special">Samburu Special</option>
+                                    <option value="Tsavo Adventure">Tsavo Adventure</option>
+                                    <option value="Beach & Bush">Beach & Bush (Diani)</option>
+                                </select>
+                            </div>
+                        ) : (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Package</label>
+                                <input
+                                    type="text"
+                                    value={packageName}
+                                    disabled
+                                    className="w-full px-4 py-2 rounded-lg border border-gray-300 bg-gray-50 text-gray-500 cursor-not-allowed"
+                                />
+                            </div>
+                        )}
+
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Proposed Travel Date</label>
                             <div className="relative">
@@ -200,21 +228,6 @@ export default function BookingForm({ packageName, packageId }: BookingFormProps
                                 />
                                 <Calendar className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
                             </div>
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Trip Type</label>
-                            <select
-                                {...register('trip_type')}
-                                className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-safari-orange focus:border-transparent outline-none transition-all bg-white"
-                            >
-                                <option value="Family">Family Safari</option>
-                                <option value="Honeymoon">Honeymoon / Couple</option>
-                                <option value="Solo">Solo Adventure</option>
-                                <option value="Group">Group Friends</option>
-                                <option value="Photography">Photography</option>
-                                <option value="Luxury">Luxury</option>
-                            </select>
                         </div>
                     </div>
 
@@ -255,6 +268,21 @@ export default function BookingForm({ packageName, packageId }: BookingFormProps
                             <option value="Budget">Budget (Basic Camping / Budget Hotels)</option>
                             <option value="Mid-Range">Mid-Range (Comfortable Lodges / Tented Camps)</option>
                             <option value="Luxury">Luxury (High-end Lodges / Luxury Camps)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Trip Type</label>
+                        <select
+                            {...register('trip_type')}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-safari-orange focus:border-transparent outline-none transition-all bg-white"
+                        >
+                            <option value="Family">Family Safari</option>
+                            <option value="Honeymoon">Honeymoon / Couple</option>
+                            <option value="Solo">Solo Adventure</option>
+                            <option value="Group">Group Friends</option>
+                            <option value="Photography">Photography</option>
+                            <option value="Luxury">Luxury</option>
                         </select>
                     </div>
                 </div>
