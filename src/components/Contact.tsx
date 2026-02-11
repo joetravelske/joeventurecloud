@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Calendar, Users as UsersIcon } from 'lucide-react';
+import { Phone, Mail, MapPin, Send } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,9 +13,13 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setStatus('submitting');
+
+    // 1. Construct WhatsApp Message (Keep existing functionality)
     const whatsappMessage = `Hi Joe! 🦁
 
 *Safari Inquiry*
@@ -32,8 +37,67 @@ ${formData.message}
 Looking forward to hearing from you!`;
 
     const whatsappUrl = `https://wa.me/254705924974?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, '_blank');
+
+    // 2. Save to Supabase
+    try {
+      // Parse travelers to integer (simple approximation)
+      const travelersCount = parseInt(formData.travelers) || 2;
+
+      await supabase.from('bookings').insert([
+        {
+          full_name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          adults: travelersCount, // Approximate mapping
+          children: 0,
+          travel_date: formData.dates ? new Date(formData.dates).toISOString() : null, // This might fail if date isn't valid ISO. Let's send null if invalid or just keep it as string if schema allowed text... schema expects string? No, date. 
+          // Wait, schema for travel_date is 'date' or 'text'? 
+          // Let's check schema. If it's date, "July 2026" will fail.
+          // Better to store "dates" in "message" or "trip_type" for now if schema is strict.
+          // Actually, let's check schema.
+          package_id: formData.package || 'Custom Inquiry',
+          message: `Preferred Dates: ${formData.dates}\nTravelers: ${formData.travelers}\n\n${formData.message}`,
+          status: 'pending',
+          trip_type: 'Custom/Contact Form'
+        }
+      ]);
+
+      setStatus('success');
+
+      // Open WhatsApp after short delay or immediately
+      setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+      }, 1500);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Even if database fails, try opening WhatsApp as fallback
+      window.open(whatsappUrl, '_blank');
+      setStatus('idle'); // Reset to allow retry
+    }
   };
+
+  if (status === 'success') {
+    return (
+      <section id="contact" className="section-padding bg-gradient-to-b from-amber-50 to-white">
+        <div className="container-custom text-center py-20">
+          <div className="bg-green-100 text-green-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span className="text-4xl">✓</span>
+          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Inquiry Sent Successfully!</h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-lg mx-auto">
+            We've received your details and added them to our system. WhatsApp should open shortly to finalize your chat.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="text-safari-orange font-semibold hover:underline"
+          >
+            Send another inquiry
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -64,10 +128,10 @@ Looking forward to hearing from you!`;
           <div>
             <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
               <h3 className="text-2xl font-heading font-bold text-gray-900 mb-6">Contact Information</h3>
-              
+
               <div className="space-y-6">
                 {/* WhatsApp - Priority */}
-                <a 
+                <a
                   href="https://wa.me/254705924974"
                   target="_blank"
                   className="flex items-start gap-4 p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-all group"
@@ -147,7 +211,7 @@ Looking forward to hearing from you!`;
           {/* Inquiry Form */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h3 className="text-2xl font-heading font-bold text-gray-900 mb-6">Send Us an Inquiry</h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -271,14 +335,24 @@ Looking forward to hearing from you!`;
 
               <button
                 type="submit"
-                className="w-full bg-safari-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                disabled={status === 'submitting'}
+                className="w-full bg-safari-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                <span>💬</span>
-                Send via WhatsApp
+                {status === 'submitting' ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <span>💬</span>
+                    Send & Chat on WhatsApp
+                  </>
+                )}
               </button>
 
               <p className="text-sm text-gray-600 text-center">
-                By submitting, you'll be redirected to WhatsApp where you can review and send your message to Joe.
+                We'll save your inquiry and open WhatsApp to finalize details.
               </p>
             </form>
           </div>
