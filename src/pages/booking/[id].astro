@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PayPalButton from '../../components/PayPalButton';
 import MpesaPayment from '../../components/MpesaPayment';
+import BookingForm from '../../components/BookingForm';
 import { getCollection, getEntry } from 'astro:content';
 
 // Generate static paths for all packages from the content collection
@@ -119,33 +120,12 @@ const { Content } = await entry.render();
 
         <!-- Right Column: Payment Options -->
         <div>
-          <div class="bg-white rounded-2xl shadow-xl p-8 sticky top-24">
-            <h2 class="text-2xl font-heading font-bold text-gray-900 mb-6">
-              Request Your Custom Quote
-            </h2>
-
-            <div class="space-y-6">
-              <p class="text-gray-600">
-                Safari prices are dynamic based on the season, group size, and your specific requirements. We'll provide a personalized quote within 24 hours.
-              </p>
-
-              <div class="space-y-4">
-                <a 
-                  href={`https://wa.me/254705924974?text=Hi%20Joe!%20I'd%20like%20a%20quote%20for%20the%20${encodeURIComponent(packageData.name)}%20package.`}
-                  target="_blank"
-                  class="flex items-center justify-center gap-3 w-full bg-green-500 text-white py-4 rounded-xl font-bold hover:bg-green-600 transition-all shadow-lg text-lg"
-                >
-                  <span>💬</span> Chat on WhatsApp
-                </a>
-                
-                <a 
-                  href="/contact"
-                  class="flex items-center justify-center w-full bg-safari-orange text-white py-4 rounded-xl font-bold hover:bg-orange-600 transition-all shadow-lg text-lg"
-                >
-                  Request via Email
-                </a>
-              </div>
-            </div>
+            <!-- Booking Form Component -->
+            <BookingForm 
+              client:load 
+              packageName={packageData.name} 
+              packageId={packageData.slug || packageData.name} 
+            />
 
             <!-- Alternative: Bank Transfer -->
             <div class="mt-8 pt-6 border-t border-gray-200">
